@@ -1,8 +1,26 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Revit Web Addin</title>
-</head>
+<script type="text/javascript">
+    function OnSubmit() {
+        var name = document.getElementById("str_name").value;
+        var elevation = document.getElementById("num_elevation").value;
+        alert("Hello World!" + name + elevation);
+    }
+ </script>
+ </head>
+
+<p>在Revit中创建1个Level：</p>
+<form onsubmit = OnSubmit()>
+ 请输入名称： <br />  
+ <input id="str_name" type="text" required=true /> <br /> 
+ 请输入高度：<br /> 
+ <!-- 浮点数:pattern="^(-?\d+)(\.\d+)?" -->
+ <input id="num_elevation" pattern="^(-?\d+)(\.\d+)?" required=true title="请输入数值"/> <br /> 
+ <input type="submit"  />
+</form>
 
 <body>
 <div id="imageboard">

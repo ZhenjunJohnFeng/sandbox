@@ -20,4 +20,7 @@ eclipse+phonegap+jQ mobile=> android native app(.apk)=> deploy to phone
 Revit specific:
 - dynamo in NodeJs server that expose RevitAPI as HTTP API
 - a client of that call revit api remotely(a new level with(name, elevation), send back-elementid, and image)
+related knowledge:
+html5 form(request submission); image-result view; table(for created levels: Id, Name)
+
 
