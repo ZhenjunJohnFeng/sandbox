@@ -1,23 +1,23 @@
-nodeJS:
-setup, write& start a server, experiment with client(on different machine)
-
-
 Git/Github
 -create a deposory at github, work with different locations/different person
 
+nodeJS:
+setup, write& start a server, experiment with client(on different machine)
 
 make the two demos work with servers and client(bubble game& chat room)
-invest the code structure, and review each teck:
-html5 canvas,div, css, javascript, ajax, JQuery, sizzle, modenizr, JSON, templ? ca...DB
+-invest the code structure, and review and understand related technology:
+html5 canvas,div, css, javascript, ajax, JQuery, sizzle, modenizr, JSON, templ? cacheDB
 
 know some common Java script design pattern
 
 
-web app/site dev some popular ways, including
-site template, IDE, frammework(e.g ruby on rails)
-
+some popular ways of web app/site dev, including
+site template, IDE, other frammework(e.g ruby on rails)
 
 mobile specific:
-
 eclipse+phonegap+jQ mobile=> android native app(.apk)=> deploy to phone
+
+Revit specific:
+- dynamo in NodeJs server that expose RevitAPI as HTTP API
+- a client of that call revit api remotely(a new level with(name, elevation), send back-elementid, and image)
 

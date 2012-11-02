@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>我的第一个网页</title>
+<style>   
+body {  background-color: #cff;}
+h1,h2 {  text-align: center;}
+p {  font-size: 16pt;  color: red;}
+#xyz {  color: #060; }
+<!-- CSS将网页中的每一个元素都看作是一个长方形的盒子。这个盒子包括外边距、边框、内边距和元素内容4项。 -->
+#foo { 	width: 400px; border: 1px solid #000; }
+#bar {
+	margin: 40px;
+	padding: 50px;
+	border: 20px solid #069;
+	background-color: #cf9;
+}
+
+</style>
+</head>
+<body>
+  <header>
+    <h1>这是标题</h1>   
+    <!-- Header content -->
+  </header>
+
+  <p id="xyz">这是第三段文字内容</p>
+
+  <p id="abc"> 
+  Hello，World！<br/>
+  From anothe line....
+  春风又<del>过</del><ins>绿</ins>江南岸 <br />
+  
+  <b>粗体</b><br />
+  <i>斜体</i><br />     
+  <em>强调文本</em><br />
+  <strong>强烈的强调文本</strong><br />
+  
+  <h1>H<sub>2</sub>O</h1><br />
+  <h1>E = mc<sup>2</sup></h1><br />
+
+  <ruby>
+  雷小园<rt>lei xiao yuan</rt>HTML5<!--HTML 5 中的新标签-->
+  </ruby>
+  
+  <blockquote>定义长的引用 浏览器呈现为一段缩进文本 HTML、CSS、Javascript... </blockquote><br />
+  <q>定义短的引用 浏览器呈现为引号HTML5</q><br />
+  
+  <mark>突出显示文本HTML5</mark><br />
+
+  <hr></hr>  <!-- 水平线 -->
+
+  <!-- 有序列表 -->
+  <ol type="a"> <!-- type属性值为：1、a、A、i、I; (old)start属性，规定起始数字 在HTML5中取消了start属性 -->
+   <li>《HTML5+CSS3网页布局和样式精粹》</li>
+   <li>《HTML+CSS网页设计与布局从入门到精通》</li>
+   <li>《锋利的jQuery》</li>
+   <li>《HTML 5与 CSS 3权威指南》</li>
+  </ol>  
+  <!--有序列表 HTML5新增的属性reversed -->
+  <ol type="a" reversed="true"> 
+   <li>《HTML5+CSS3网页布局和样式精粹》</li>
+   <li>《HTML+CSS网页设计与布局从入门到精通》</li>
+   <li>《锋利的jQuery》</li>
+   <li>《HTML 5与 CSS 3权威指南》</li>
+  </ol>
+
+  <!-- 无序列表 default  type=disc-->
+  <ul>
+   <li>《HTML5+CSS3网页布局和样式精粹》</li>
+   <li>《HTML+CSS网页设计与布局从入门到精通》</li>
+   <li>《锋利的jQuery》</li>
+   <li>《HTML 5与 CSS 3权威指南》</li>
+  </ul>
+  <!-- ul元素的type属性，值为：disc、square、circle-->  
+  <ul type="square">
+   <li>《HTML5+CSS3网页布局和样式精粹》</li>
+   <li>《HTML+CSS网页设计与布局从入门到精通》</li>
+   <li>《锋利的jQuery》</li>
+   <li>《HTML 5与 CSS 3权威指南》</li>
+  </ul>
+  <ul type="circle">
+   <li>《HTML5+CSS3网页布局和样式精粹》</li>
+   <li>《HTML+CSS网页设计与布局从入门到精通》</li>
+   <li>《锋利的jQuery》</li>
+   <li>《HTML 5与 CSS 3权威指南》</li>
+  </ul>
+
+  <!-- 定义列表 -->
+  <dl>
+  <dt>第一章</dt><!--定义列表中的项目-->
+    <dd>第一节内容</dd><!--描述列表中的项目-->
+    <dd>第二节内容</dd>
+    <dd>第三节内容</dd>
+  <dt>第二章</dt>
+    <dd>第一节内容</dd>
+    <dd>第二节内容</dd>
+  </dl>
+
+  <center><h1>水平居中</h1></center><br />
+
+  <font size="16pt" color="green">这是font标签</font><br />
+
+  <!-- href属性，表示链接的目标 URL;target属性，表示打开链接的窗口，值为_blank时表示打开新窗口-->
+  <a href="http://autodesk.com.cn" target="_blank">我的超链接</a><br />
+  <!-- 链接到本网页的其它位置 --> 
+  <a href="#xyz">Link to xyz</a><br />
+ 
+  <!--定义 HTML 页面中的图像
+  src：图像的 URL，
+  alt：规定图像的替代文本。
+  width：图像的宽度
+  height：图像的高度
+  -->
+  <img src="image/BeerLable.jpg" width="120" height="150" /><br />
+
+  <!-- 定义媒介内容的分组，以及它们的标题 -->
+  <figure>
+  <figcaption><h2>3个图标</h2></figcaption><br />
+  <img src="image/1.png" alt="chrome" />
+  <img src="image/2.png" alt="FireFox" />
+  <img src="image/3.png" alt="IE" />  
+  </figure>
+  <br />
+
+  <!-- 定义图像区域映射 -->
+  <img src="image/BeerLable.jpg" width="400" height="200" border="0" usemap="#Map"/><br />
+  <map name="Map">
+  <area shape="rect" coords="303,22,377,52" href="www.sohu.com">
+  <area shape="rect" coords="242,76,321,105" href="www.baidu.com">
+  <area shape="rect" coords="141,126,216,157" href="www.taobao.com">
+  <area shape="rect" coords="15,152,92,183" href="www.china.com">
+  <area shape ="circle" coords ="55,60,40" href ="www.autodesk.com">
+ </map>
+
+ <!-- 
+ th 元素中的文本呈现为粗体并且居中。
+ td 元素中的文本是普通的左对齐文本
+ caption 标签必须直接放置到 table 标签之后
+ -->
+ <table>	
+ <caption>表格标题</caption>
+    <tr>
+		<th>Header1</th>
+		<th>Header2</th>
+		<th>Header3</th>
+	</tr>
+	<tr>
+		<td>A1</td>
+		<td>A2</td>
+		<td>A3</td>
+	</tr>
+	<tr>
+		<td>B1</td>
+		<td>B2</td>
+		<td>B3</td>
+	</tr>   
+</table>
+
+
+  </p>  
+ 
+  <pre> <!-- 预格式化的文本 常见用来表示源代码 -->
+  int main()
+  {
+     cout << "Hello, World!" << endl;
+  }
+  </pre>
+  
+  <article>
+    <h1>这是标题1</h1>   
+    <h2>这是标题2 &lt; &int; &spades; &clubs; &hearts; &diams; &pi; &gt;</h2>
+    <h3>这是标题3</h3>
+    <h4>这是标题4</h4>
+    <h5>这是标题5</h5>
+    <h6>这是标题6</h6>
+    <!-- Article content -->
+  </article>
+
+  <div id="foo">
+  <div id="bar">
+    <h3>HTML5网页设计</h3> <br />第1章  网页设计概述<br />第2章  HTML语言基础<br />第3章  CSS样式表基础
+  </div>
+  </div>
+   
+  <aside role="complementary">
+    <!-- Secondary content -->
+  </aside>
+  <footer>
+    <!-- Footer content -->
+  </footer>
+</body>
+</html>
