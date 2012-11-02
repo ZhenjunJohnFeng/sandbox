@@ -1,0 +1,167 @@
+﻿2012.10.24-25 html5 training
+
+repositories:
+origional:
+https://github.com/jollen/html5-websocket-nodejs
+https://github.com/jollen/html5-game-bubble
+hot updated: client/server chatting app+ bubble game
+https://github.com/jollen/html5-websocket-nodejs
+https://github.com/moko365/html5-game-bubble-training
+
+recomend a good book:
+Learning JavaScript Design Patterns
+ A book by Addy Osmani
+
+4 important patterns:
+
+pt1. moudle pattern: one code, one copy, used in mutiple locations. Tip: export import module, gloables
+pt2. JQ plug in pattern: write a function as JQ addin: $.fn.createWebSocket = ; tip: use of 'this' pointer
+
+
+
+Phonegap 2 points: device api + package as app
+
+HTTP API -SAAS-Web API-Platform API
+band is expensive resource=> a lineweight, Data Ex. format=>JSON(marshall-parsing)
+
+HTML5 new tags: canvs,
+
+
+Java script learn site:
+www.codeyear.com
+Yet another good site to learn:
+www.javascriptkit.com
+ 
+DOM selector technology: getelembyid->JQuery-Sizzle (faster)
+
+cookies=>web storage(HTML5)
+
+How to debug java script:3 common ways. 
+FireBug recomended. e.g. firefox+firebug, OK to use on Mac pad, as well as windows.
+
+
+Tech of data push:web socket+nodeJS 
+(NOT ajax - that is actually data pull)
+Socket(TCP/IP)=>Web Socket 
+
+
+SVN=>Github
+Github account
+
+
+4 ways to submit data to server, show e.g. 1. form; 2. Web socket
+To use web socket:
+var ws = new WebSocket("ws://svn.moko365.com:8888/", "echo-protocol");
+
+
+JQ handbook
+jquery.com; docs.jquery.com
+
+NodeJS referenc book:
+nodejs.org api docs
+
+server side script:
+-http.createServer saved as a .js file
+-server machine need to install node js first
+-then start server like: node hello.js
+
+
+micro book: 50-80 pages, simple, valuable
+
+
+
+
+A reference book for html5 tags:
+HTML5 up and running, by Mark Pilgrim
+
+p184-web socket with NodeJS
+npm install websocket (to code directory)
+NodeJS to windows: may also need to install pathon?
+
+some ides about web app dev env(programming IDE)
+* vi like editor + js plug in 
+- hard to use, but cool,  no mouth, debuggable, can: write code, work on github site (via commond line like -git add, git commit), run node JS; open web site 
+  cmd in "ssh", "bash", "vim"
+(ssh window: vi game.js)
+* eclips-not very good support for html tags and js
+* IntelliIdea (better support for html tags and js)
+Some dev env with rich UI:
+-Dreamweaver
+-VS2010
+-Eclipse
+-Text editor-sublime Text2
+ 
+
+Mbile UI Framework: included by JQ Mobile
+
+day 2 agenda:
+android sdk + phone gap(from html to app)
+how to test
+firebug qunit-test
+?x-ray  show canvus
+
+
+
+
+Lib ana load JS: modernizr
+
+sizzlejs.com
+
+javascript minify tools, minified to load quickly
+sizzle: can also select css(JQ can not)
+yepnoepjs.com
+htc.
+
+
+skills:
+work on github;
+able to use vim(ssh,vim)
+
+4 patterns: constructor,  moudle, JQ, factory
+other: MV,chaining
+
+2 ways to store info in cloud(scores):
+-openapi(http api)
+-web socket(broswer should support)
+the 3rd=1 or 2(yepno loader)
+test:Modernizr.websocket
+yep:
+nop:
+
+Modernizr: 1. support HTML5 features support checking. 2. Asynchronous java script loader
+
+NodeJS: recomended data base> couchDB
+
+
+http://www.w3.org/TR/DOM-Level-3-Events/
+
+***tip to avoid blocking tip: 'timeout' instead of 'sleep'
+
+jquery template:p106-107
+
+
+QUnit p248-251, need to down load, at:
+qunitjs.com
+api.qunitjs.com
+
+*websocket
+sendUTF-(string/txt)as JASON, tip: do not enclding/parsing JASON
+sendbin-img, vidio,audio
+
+in gitbash, cmd line:
+git add all
+
+jollen's recent focus:
+-webkit
+-html5 project
+-php, java script, driver(expert area)
+
+
+
+
+
+
+
+
+
+

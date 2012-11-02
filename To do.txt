@@ -1,0 +1,23 @@
+nodeJS:
+setup, write& start a server, experiment with client(on different machine)
+
+
+Git/Github
+-create a deposory at github, work with different locations/different person
+
+
+make the two demos work with servers and client(bubble game& chat room)
+invest the code structure, and review each teck:
+html5 canvas,div, css, javascript, ajax, JQuery, sizzle, modenizr, JSON, templ? ca...DB
+
+know some common Java script design pattern
+
+
+web app/site dev some popular ways, including
+site template, IDE, frammework(e.g ruby on rails)
+
+
+mobile specific:
+
+eclipse+phonegap+jQ mobile=> android native app(.apk)=> deploy to phone
+
