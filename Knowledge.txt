@@ -12,20 +12,21 @@ Firebug user guide
 
 install GIT(step by step)
 http://help.github.com/set-up-git-redirect
+A UI version easy to use:
 Download GitHub for Windows, install
 Github for Windows使用图文教程
 http://www.cr173.com/html/15618_1.html
 First time to use?-apply account via Github for Windows UI.
 
 
-MOT- 2012.11.01
+Basic GITHUb operations:
 -create/delete repo on my site-https://github.com/ZhenjunJohnFeng
 -use "Github for Windows" on different machines to work with one repo.
 -pull, edit, push(sync) via “Github for Windows”
 How to solve: Failed looking for HEAD in this repository
-clone to another local repository;  do not use the damaged one anymore(stop track, delete,).
+clone to another local repository;  do not use the damaged local repository anymore(stop track, delete,).
 
-Git Bash:
+Git Bash, to pull code from gitsub site:
 git clone https://github.com/ZhenjunJohnFeng/Sandbox
 
 HTML DOM Image 对象
