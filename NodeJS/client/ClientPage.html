@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta charset="UTF-8">
+    <title>Send Message.</title>
+</head>
+<body>
+
+<script src="C:/Users/fengz/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://localhost');
+    socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'datasdfjsafasd' });
+    });
+
+
+alert("A message was sent to server!")
+</script>
+
+</body>
+</html>

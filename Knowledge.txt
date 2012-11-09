@@ -9,6 +9,9 @@ to install xpi: open firefox, drag .xpi into
 Firebug user guide
  http://www.evotech.net/blog/2007/06/introduction-to-firebug
 
+set break point:
+set breakpoints, just click on any line number, and a red dot will appear to indicate that the breakpoint is set. Click the red dot again to remove the breakpoint.
+
 
 install GIT(step by step)
 http://help.github.com/set-up-git-redirect
@@ -78,6 +81,97 @@ e.g. <input id="num_elevation" pattern="^(-?\d+)(\.\d+)?" required=true title="�
 浮点数  ^(-?\d+)(\.\d+)?
 
 vs里输入汉字乱码-》 workround: create a 文本文件，  utf-8, copy-paste to VS
+
+
+new WebSocket("ws://...", "echo-protocol");
+WebSocket API是下一代客户端-服务器的异步通信方法。
+WebSocket引入之处在于服务器和客户端可以在给定的时间范围内的任意时刻相互推送信息，而且允许跨域通信.
+客户端的用法
+var socket = new WebSocket('ws://localhost:8080'); 
+
+socket.onopen = function(event) { 
+
+     socket.send(发送消息'); //触发onmessage事件
+
+     socket.close()   // 关闭Socket.... 触发onclose事件 
+
+};
+
+服务器端必须遵循特定的WS通信协议
+在不同的websocket server中需要自定义处理方法 onconnection onmessage等借口
+以下是node.js 实现的服务端程序，接下来再了解一下java 实现的WS server
+// 需要HTTP 模块来启动服务器和Socket.IO
+
+var http= require('http'), io= require('socket.io'); 
+
+var server= http.createServer(function(req, res){
+
+ // 发送HTML的headers和message
+
+ res.writeHead(200,{ 'Content-Type': 'text/html' }); 
+
+ res.end('<h1>Hello Socket Lover!</h1>'); 
+
+}); 
+
+server.listen(8080); 
+
+
+
+
+// 创建一个Socket.IO实例，把它传递给服务器
+
+var socket= io.listen(server); 
+
+ 
+
+// 添加一个连接监听器
+
+socket.on('connection', function(client){ 
+
+ // 成功！现在开始监听接收到的消息
+
+ client.on('message',function(event){
+
+   console.log('Received message from client!',event); 
+
+ }); 
+
+ 
+
+ client.on('disconnect',function(){ 
+
+   clearInterval(interval); 
+
+   console.log('Server has disconnected'); 
+
+ }); 
+
+});
+refer:
+http://socket.io/
+
+
+ <script>
+    var socket = io.connect('http://localhost');
+    socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+    });
+   </script>
+
+
+
+server.js:
+
+console.log('Server is running at http://127.0.0.1:1234/');
+
+HTML5: alert("A message was sent to server!")
+
+
+
+
+
 
 
 
