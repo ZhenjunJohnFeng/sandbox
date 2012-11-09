@@ -21,11 +21,40 @@ p {  font-size: 16pt;  color: red;}
 </head>
 <body>
   <header>
-    <h1>这是标题</h1>   
-    <!-- Header content -->
+    <h1>这是标题</h1>     
   </header>
 
-  <p id="xyz">这是第三段文字内容</p>
+  <p id="xyz">这是一段文字内容</p>
+  
+  <img src="image/BeerLable.jpg" width="120" height="150" /><br />
+  
+  <!-- New tag. can play .mp4 or .ogg, if both source provided, the browser will use the first recognized format.e.g. chrom-mp4;firefox-ogg; IE none;-->
+  <video width="320" height="240" controls="controls">
+   <source src="video/movie.mp4" type="video/mp4">
+   <source src="movie.ogg" type="video/ogg">
+   Your browser does not support the video tag.
+  </video>
+  <br />
+  
+  <audio controls="controls">
+  <source src="audio/horse.ogg" type="audio/ogg">
+  <source src="audio/horse.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+  
+  <!-- web storage = local storage + session storage->
+  <script type="text/javascript" > 
+      if (typeof (Storage) !== "undefined") {
+      alert(" Good")
+      }
+      else
+      {
+        alert("Sorry! Current broswer has no web storage support...")
+      }      
+  </script>
+ 
+  
+  <!-- more, to see: http://www.w3school.cn/ -->
 
   <p id="abc"> 
   Hello，World！<br/>
@@ -113,7 +142,7 @@ p {  font-size: 16pt;  color: red;}
   width：图像的宽度
   height：图像的高度
   -->
-  <img src="image/BeerLable.jpg" width="120" height="150" /><br />
+ 
 
   <!-- 定义媒介内容的分组，以及它们的标题 -->
   <figure>
@@ -159,7 +188,7 @@ p {  font-size: 16pt;  color: red;}
 </table>
 
 
-  </p>  
+ </p>  <!-- end para of "abc"-->
  
   <pre> <!-- 预格式化的文本 常见用来表示源代码 -->
   int main()
