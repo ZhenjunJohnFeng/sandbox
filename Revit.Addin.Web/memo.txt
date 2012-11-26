@@ -6,3 +6,39 @@ http://wiki.autodesk.com/display/aeceng/Dynamo+C%23+shell
 Roslyn.Scripting.CSharp.ScriptEngine
 Roslyn.Scripting.Session
 
+JSON+POST
+dynamo scripts:
+   // test the API
+               
+                theApp.VersionName
+              
+                Document newdoc = theApp.NewProjectDocument("C:\\Revit\\Dev1\\data\\Imperial\\Templates\\default.rte");
+                
+               // Document theDoc=theApp.OpenDocumentFile("C:\\SmallHouse.rvt");
+               // thedoc.PathName
+              
+
+
+newdoc         
+
+newdoc.Title
+newdoc.IsReadOnlyFile
+                 
+                  Transaction tran = new Transaction(newdoc, "dynamo transaction");
+                  tran.Start();                
+
+                  //create a level and a wall
+                  Level newLevel = newdoc.Create.NewLevel(100);
+                  newLevel
+                  Curve wallCurve = Line.CreateBound(new XYZ(1000, 1000, 0), new XYZ(-1000, 1000, 0));
+                  Wall w = Wall.Create(newdoc, wallCurve, newLevel.Id, false);
+                  // committing the transaction
+                 
+                  tran.Commit();
+                  newdoc.SaveAs("C:\\FacelessWallLevel.rvt");             
+
+                 
+
+                
+                 newdoc.Close(false);
+                

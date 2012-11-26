@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Dynamo HTTP Client</title>
+</head>
+<body>
+<h1>Dynamo HTTP</h1>
+
+Type in a line of C# dynamo code, e.g. <pre>XYZ myPoint = new XYZ(1,2,3); </pre> or <br /> 
+<pre>Document doc = theApp.OpenDocumentFile("C:\\temp\\blockhole.rfa");</pre>
+
+<script>
+   function SetCodeWindowValue() {
+      var codeStringVal= "XYZ myPoint = new XYZ(1, 2, 3); myPoint.Normalize();";
+      codestring.value = codeStringVal;
+   }
+</script>
+<form action="http://10.148.204.79:8080?encoding=HTML" method="post">
+
+<p>null</p>
+
+<textarea rows="6" cols="80" name="codestring" id="codestring">Document theDoc=theApp.OpenDocumentFile("C:\\SmallHouse.rvt");</textarea>
+<br />
+<input type="submit" value="Send" /> <br />
+<button type="button" name="setcodewindow"  onclick="SetCodeWindowValue(); return false;">Add sample code</button>
+</form>
+</body>
+</html>
+
