@@ -1,0 +1,13 @@
+http://www.w3cschool.cn/html_5_canvas.html
+
+<canvas id="canvas1" width="200" height="100" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas1');
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#FF0000';
+    ctx.fillRect(0, 0, 100, 50);
+</script>
+</canvas>
+<br />
+

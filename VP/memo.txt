@@ -1,2 +1,4 @@
 open in eclips:
-import-existing projects into workspace...select folder C:\Users\fengz\vp-paas
+import-existing projects into workspace...select folder C:\Users\fengz\vp-paas  (the git based)
+
+install rails:

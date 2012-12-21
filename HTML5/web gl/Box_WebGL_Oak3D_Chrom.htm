@@ -1,0 +1,282 @@
+﻿<html>
+<head>
+<title>Box Demo: WebGL + Oak3D！</title>
+<script type="text/javascript" src="./lib/Oak3D_v_0_5.js"></script>
+<script id="shader-fs" type="x-shader/x-fragment">
+    //片段渲染器
+    precision mediump float;
+
+
+    varying vec4 vColor;
+
+    void main(void) {        
+        gl_FragColor = vColor;
+    }
+</script>
+<script id="shader-vs" type="x-shader/x-vertex">
+    //顶点渲染器,它是一段图形卡上的代码，能用一个顶点完成它想做的任何事
+    //两个属性
+    attribute vec3 aVertexPosition;
+    attribute vec4 aVertexColor;
+
+    //两个统一变量
+    //模型视图矩阵和投影矩阵
+    //可认为渲染器程序是一个对象（在面向对象的场景中），而统一变量是对象中的字段
+    //统一变量十分有用，因为它们能在渲染器之外获得
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+
+    varying vec4 vColor;
+
+    //渲染器在每个顶点上调用，顶点作为aVertexPosition参数传入到渲染器的代码中
+    void main(void) {
+        //渲染器主程序
+        //将顶点与模型视图矩阵和投影矩阵相乘，然后作为顶点最终位置的结果传出
+        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1 /*Scaling*/);
+        vColor = aVertexColor;
+    }
+</script>
+<script type="text/javascript">
+
+    var gl;    
+
+    //在HTML网页中寻找一个元素，与传入参数id匹配，取出其内容并基于其类型创建一个片段渲染器或者一个顶点渲染器
+    //接着将其传入到WebGL中编译成可以在图形卡上运行的形式
+    function getShader(gl, id) {
+        var shaderScript = document.getElementById(id);
+        if (!shaderScript) {
+            return null;
+        }
+
+        var str = "";
+        var k = shaderScript.firstChild;
+        while (k) {
+            if (k.nodeType == 3) {
+                str += k.textContent;
+            }
+            k = k.nextSibling;
+        }
+
+        var shader;
+        if (shaderScript.type == "x-shader/x-fragment") {
+            shader = gl.createShader(gl.FRAGMENT_SHADER);
+        } else if (shaderScript.type == "x-shader/x-vertex") {
+            shader = gl.createShader(gl.VERTEX_SHADER);
+        } else {
+            return null;
+        }
+
+        gl.shaderSource(shader, str);
+        gl.compileShader(shader);
+
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            alert(gl.getShaderInfoLog(shader));
+            return null;
+        }
+
+        return shader;
+    }
+
+
+    var shaderProgram;
+    
+
+    var mvMatrix ;
+    var mvMatrixStack = [];
+    var pMatrix ;
+
+    function mvPushMatrix() {
+        var copy = new okMat4();
+        mvMatrix.clone(copy);
+        mvMatrixStack.push(copy);
+    }
+
+    function mvPopMatrix() {
+        if (mvMatrixStack.length == 0) {
+            throw "Invalid popMatrix!";
+        }
+        mvMatrix = mvMatrixStack.pop();
+    }
+
+    //通过引用uniform来表示initShaders中的投影矩阵和模型视图矩阵
+    //将值从JavaScript类型矩阵传递给WebGL
+    function setMatrixUniforms() {
+        gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix.toArray());
+        gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix.toArray());
+    }
+
+
+    var pyramidVertexPositionBuffer;
+    var pyramidVertexColorBuffer;
+    function initBuffers() {
+        pyramidVertexPositionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
+        //FRBL
+        var vertices = [
+        // Front face
+             0.0, 1.0, 0.0,
+            -1.0, -1.0, 1.0,
+             1.0, -1.0, 1.0,
+
+        // Right face
+             0.0, 1.0, 0.0,
+             1.0, -1.0, 1.0,
+             1.0, -1.0, -1.0,
+
+        // Back face
+             0.0, 1.0, 0.0,
+             1.0, -1.0, -1.0,
+            -1.0, -1.0, -1.0,
+
+        // Left face
+             0.0, 1.0, 0.0,
+            -1.0, -1.0, -1.0,
+            -1.0, -1.0, 1.0
+        ];
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+        //structure of the buffer
+        pyramidVertexPositionBuffer.itemSize = 3;
+        pyramidVertexPositionBuffer.numItems = 12;
+
+        pyramidVertexColorBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexColorBuffer);
+        var colors = [
+            // Front face
+            1.0, 0.0, 0.0, 1.0,
+            0.0, 1.0, 0.0, 1.0,
+            0.0, 0.0, 1.0, 1.0,
+
+            // Right face
+            1.0, 0.0, 0.0, 1.0,
+            0.0, 0.0, 1.0, 1.0,
+            0.0, 1.0, 0.0, 1.0,
+
+            // Back face
+            1.0, 0.0, 0.0, 1.0,
+            0.0, 1.0, 0.0, 1.0,
+            0.0, 0.0, 1.0, 1.0,
+
+            // Left face
+            1.0, 0.0, 0.0, 1.0,
+            0.0, 0.0, 1.0, 1.0,
+            0.0, 1.0, 0.0, 1.0
+        ];
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+        pyramidVertexColorBuffer.itemSize = 4;
+        pyramidVertexColorBuffer.numItems = 12;       
+    }
+
+
+    var rPyramid = 0; 
+
+    function drawScene() {
+        gl.viewport(0,0,/*origional location*/ gl.viewportWidth, gl.viewportHeight);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        pMatrix = okMat4Proj(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0);//
+        mvMatrix = okMat4Trans(-1.5, 0.0, -8.0);//       
+        mvPushMatrix();
+
+        //control rotation   
+        mvMatrix.rot(OAK.SPACE_LOCAL, rPyramid, 1.0, 1.0, 1.0, true);     
+        mvMatrix.rotX(OAK.SPACE_LOCAL, rPyramid, true);
+        mvMatrix.rotY(OAK.SPACE_LOCAL, rPyramid, true);   
+        mvMatrix.rotZ(OAK.SPACE_LOCAL, rPyramid, true);
+        
+        
+
+        //drawScene函数中使用vertexPositionAttribute，将其属性与缓冲区关联在一起
+        gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
+        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, pyramidVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexColorBuffer);
+        gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, pyramidVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+        setMatrixUniforms();
+        gl.drawArrays(gl.TRIANGLES, 0, pyramidVertexPositionBuffer.numItems);
+        mvPopMatrix();
+    }
+
+    function initShaders() {
+        //获得两个渲染器：一个片段渲染器和一个顶点渲染器
+        var fragmentShader = getShader(gl, "shader-fs");
+        var vertexShader = getShader(gl, "shader-vs");
+
+        shaderProgram = gl.createProgram();
+        gl.attachShader(shaderProgram, vertexShader);
+        gl.attachShader(shaderProgram, fragmentShader);
+        gl.linkProgram(shaderProgram);
+
+        if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+            alert("Could not initialise shaders");
+        }
+
+        //将两者绑定在WebGL“程序”上
+        //一个WebGL“程序”是一段放置在系统WebGL上的代码
+        gl.useProgram(shaderProgram);
+
+        shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+        gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute); //指示WebGL使用一个数组来为该属性提供数值
+        shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
+        gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
+
+        shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix"); //投影矩阵
+        shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix"); //模型视图矩阵
+    }
+
+
+    var lastTime = 0;
+    function animate() {
+        
+        //alert("ticketed");
+        
+        var timeNow = new Date().getTime();
+        if (lastTime != 0) {
+            var elapsed = timeNow - lastTime;
+            rPyramid += (90 * elapsed) / 6000.0;     //control rotation speed  
+            drawScene();    
+        }
+        lastTime = timeNow;
+    }
+
+    function tick() {
+        //must call the two 
+        okRequestAnimationFrame(tick);
+        animate();
+    }
+
+    function initGL(canvas) {
+        try {
+            gl = canvas.getContext("experimental-webgl");
+            gl.viewportWidth = canvas.width;
+            gl.viewportHeight = canvas.height;
+        } catch (e) {
+        }
+        if (!gl) {
+            alert("Could not initialise WebGL, sorry :-(");
+        }
+    }
+
+
+    function webGLStart() {
+        var canvas = document.getElementById("myCanvas");
+        
+        initGL(canvas);
+
+        //装载了片段渲染器和顶点渲染器，以便它们能被编译后传入到WebGL，最终使用WebGL渲染出三维场景。
+        initShaders(); 
+
+        // initiate dada that controls position and color of vertex
+        initBuffers();
+
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);//set black background
+        gl.enable(gl.DEPTH_TEST);
+
+        tick();//animation driver, reentered
+    }
+
+</script>
+</head>
+
+<body onload="webGLStart();">
+<canvas id="myCanvas" style="border: none;" width="1000" height="1000"></canvas>
+</body>
+</html>

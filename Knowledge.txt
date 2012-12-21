@@ -29,7 +29,7 @@ Basic GITHUb operations:
 How to solve: Failed looking for HEAD in this repository
 clone to another local repository;  do not use the damaged local repository anymore(stop track, delete,).
 
-Git Bash, to pull code from gitsub site:
+Git Bash, to pull code from github site:
 git clone https://github.com/ZhenjunJohnFeng/Sandbox
 
 HTML DOM Image 对象
